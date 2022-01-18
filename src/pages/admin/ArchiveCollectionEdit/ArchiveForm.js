@@ -38,7 +38,9 @@ const singleFields = [
   "thumbnail_path"
 ];
 
-const editableFields = singleFields.concat(multiFields);
+const booleanFields = ["visibility"];
+
+const editableFields = singleFields.concat(multiFields).concat(booleanFields);
 
 const ArchiveForm = React.memo(props => {
   const { identifier } = props;
@@ -168,6 +170,9 @@ const ArchiveForm = React.memo(props => {
     if (inputValue.trim() === "") {
       inputValue = null;
     }
+    if (booleanFields.indexOf(field) !== -1) {
+      inputValue = event.target.checked;
+    }
     setArchive(prevArchive => {
       if (valueIdx === undefined) {
         return {
@@ -247,6 +252,7 @@ const ArchiveForm = React.memo(props => {
           field={attribute.field}
           label={attribute.label}
           isMulti={multiFields.includes(attribute.field)}
+          isBoolean={booleanFields.includes(attribute.field)}
           values={archive[attribute.field]}
           onChangeValue={changeValueHandler}
           onRemoveValue={deleteMetadataHandler}
@@ -275,6 +281,7 @@ const ArchiveForm = React.memo(props => {
               key={`view_${attribute.field}`}
               attribute={attribute}
               isMulti={multiFields.includes(attribute.field)}
+              isBoolean={booleanFields.includes(attribute.field)}
               values={archive[attribute.field]}
             />
           );
