@@ -134,7 +134,7 @@ class ArchivePage extends Component {
     return url.match(/\.(x3d|X3D)$/) != null;
   }
   isPowerPointUrl(url) {
-    return url.match(/\.(pptx|ppt|docx)$/) != null;
+    return url.match(/\.(pptx|ppt|docx|pptm)$/) != null;
   }
 
   buildArchiveSchema(item) {
