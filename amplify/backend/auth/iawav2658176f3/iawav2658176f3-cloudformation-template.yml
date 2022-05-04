@@ -397,4 +397,4 @@ Outputs:
     Value:
       Fn::GetAtt: UserPoolClientInputs.appSecret
 Description: >-
-  {"createdOn":"Linux","createdBy":"Amplify","createdWith":"8.0.2","stackType":"auth-Cognito","metadata":{}}
+  {"createdOn":"Mac","createdBy":"Amplify","createdWith":"7.6.22","stackType":"auth-Cognito","metadata":{}}
