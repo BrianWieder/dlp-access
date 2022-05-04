@@ -133,6 +133,9 @@ class ArchivePage extends Component {
   isX3DUrl(url) {
     return url.match(/\.(x3d|X3D)$/) != null;
   }
+  isPowerPointUrl(url) {
+    return url.match(/\.(pptx|ppt|docx)$/) != null;
+  }
 
   buildArchiveSchema(item) {
     let info = {};
@@ -231,7 +234,17 @@ class ArchivePage extends Component {
           <X3DElement url={item.manifest_url} frameSize={width} />
         </div>
       );
+    } else if (this.isPowerPointUrl(item.manifest_url)) {
+      display = (
+        <iframe
+          src={`https://docs.google.com/viewer?url=${item.manifest_url}&embedded=true`}
+          width="100%"
+          height="600px"
+          frameBorder="0"
+        />
+      );
     } else {
+      console.log("none match");
       display = <></>;
     }
     return display;
@@ -378,7 +391,6 @@ class ArchivePage extends Component {
                 title={this.state.item.title}
                 media={this.state.item.thumbnail_path}
               />
-              <Citation item={this.state.item} site={this.props.site} />
               <table aria-label="Item Metadata">
                 <tbody>
                   <RenderItemsDetailed
